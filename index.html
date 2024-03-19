@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem de Estoque</title>
+    <style>
+        /* Adicione seu CSS aqui */
+    </style>
 </head>
 <body>
     <h2>Contagem de Estoque</h2>
+    
+    <!-- Seleção de Listas -->
+    <div>
+        <label for="listSelector">Selecione a Lista:</label>
+        <select id="listSelector" onchange="changeList(this.value)">
+            <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
+        </select>
+        <button onclick="createNewList()">Criar Nova Lista</button>
+    </div>
+    
+    <!-- Formulário para adicionar itens -->
     <form id="itemForm">
         <label for="quantity">Quantidade:</label>
         <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-        <label for="barcode">Código de Barras:</label>
+        <label for="barcode">Barras:</label>
         <input type="text" id="barcode" name="barcode" required>
         <button type="submit">Adicionar</button>
     </form>
     
-    <h3>Itens Contados</h3>
+    <h3>Itens Contados</h3> <button onclick="copyItemsToClipboard()">Copiar Dados</button>
     <table id="itemsList">
         <thead>
             <tr>
-                <th>Código de Barras</th>
+                <th>Barras</th>
                 <th>Quantidade</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Itens serão adicionados aqui -->
+            <!-- Itens serão adicionados aqui pelo JavaScript -->
         </tbody>
     </table>
     
+    
     <script>// Carrega os itens quando a página é carregada
+        
+        // Variável para armazenar o nome da lista atual
+        let currentListName = 'listaPadrao';
+        
+        // Carrega os itens e listas quando a página é carregada
         document.addEventListener('DOMContentLoaded', function() {
-            loadItems();
-            
+            loadListsNames();
+            loadItems(currentListName);
         });
         
         document.getElementById('itemForm').addEventListener('submit', function(event) {
@@ -40,25 +61,6 @@
             const barcode = document.getElementById('barcode').value;
             const quantity = parseInt(document.getElementById('quantity').value, 10);
             addItemToList(barcode, quantity);
-            var jbarcode = $('#barcode').val();
-            var jquantity = $('#quantity').val();
-
-            $.ajax({
-                url: 'www.100nome.com.br/app/contagem.php', // Substitua pela URL do seu script PHP
-                type: 'POST',
-                dataType: 'JSON', // ou 'json', se o seu script PHP retornar JSON
-                data: {
-                    jbarcode: jbarcode,
-                    jquantity: jquantity,
-                },
-                success: function(resultado) {
-                    console.log('Resposta do servidor:', resultado);
-                },
-                error: function() {
-                    alert('Erro na consulta dos produtos.');
-                }
-            });
-            
         });
         
         function addItemToList(barcode, quantity) {
@@ -80,9 +82,16 @@
                 const newRow = itemsList.insertRow();
                 const cellBarcode = newRow.insertCell(0);
                 const cellQuantity = newRow.insertCell(1);
+                const cellRemoveBtn = newRow.insertCell(2); // Célula para o botão de remoção
                 
                 cellBarcode.textContent = barcode;
                 cellQuantity.textContent = quantity;
+                
+                // Cria o botão de remoção e o adiciona à nova célula
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remover';
+                removeBtn.onclick = function() { removeItemFromList(barcode); };
+                cellRemoveBtn.appendChild(removeBtn);
             }
             
             saveItems(); // Salva a lista atualizada no LocalStorage
@@ -92,6 +101,7 @@
             document.getElementById('barcode').focus();
         }
         
+        
         function saveItems() {
             const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
             const itemsArray = [];
@@ -100,11 +110,15 @@
                 itemsArray.push({ barcode: row.cells[0].textContent, quantity: row.cells[1].textContent });
             }
             
-            localStorage.setItem('items', JSON.stringify(itemsArray));
+            // Salva a lista atual no objeto de listas no LocalStorage
+            let lists = JSON.parse(localStorage.getItem('lists')) || {};
+            lists[currentListName] = itemsArray;
+            localStorage.setItem('lists', JSON.stringify(lists));
         }
         
-        function loadItems() {
-            const items = JSON.parse(localStorage.getItem('items'));
+        function loadItems(listName) {
+            const lists = JSON.parse(localStorage.getItem('lists')) || {};
+            const items = lists[listName];
             if (items) {
                 const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
                 itemsList.innerHTML = ''; // Limpa a lista atual
@@ -118,6 +132,73 @@
                     cellQuantity.textContent = item.quantity;
                 }
             }
+        }
+        
+        function removeItemFromList(barcode) {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            for (let row of itemsList.rows) {
+                if (row.cells[0].textContent === barcode) {
+                    row.remove();
+                    break;
+                }
+            }
+            saveItems(); // Salva a lista atualizada no LocalStorage
+        }
+        
+        function changeList(newListName) {
+            // Esta função é chamada quando o usuário seleciona uma nova lista
+            // Salva a lista atual antes de mudar
+            saveItems(currentListName);           
+            // Atualiza a lista atual e carrega os itens da nova lista
+            currentListName = newListName;
+            loadItems(currentListName);
+        }
+        
+        // Função adicional para copiar dados para a área de transferência
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Dados copiados com sucesso!');
+            }, function(err) {
+                alert('Erro ao copiar dados: ', err);
+            });
+        }
+        
+        function loadListsNames() {
+            const lists = JSON.parse(localStorage.getItem('lists')) || {};
+            const listSelector = document.getElementById('listSelector');
+            listSelector.innerHTML = ''; // Limpa as opções existentes
+            for (let listName in lists) {
+                let option = new Option(listName, listName);
+                listSelector.add(option);
+            }
+        }
+        
+        function createNewList() {
+            let listName = prompt("Nome da nova lista:");
+            if (listName) {
+                let lists = JSON.parse(localStorage.getItem('lists')) || {};
+                if (!lists[listName]) {
+                    lists[listName] = []; // Cria uma lista vazia
+                    localStorage.setItem('lists', JSON.stringify(lists));
+                    loadListsNames(); // Atualiza o seletor de listas
+                    changeList(listName); // Muda para a nova lista
+                } else {
+                    alert("Uma lista com esse nome já existe.");
+                }
+            }
+        }
+        function copyItemsToClipboard() {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            let textToCopy = "Barras,Quantidade\n"; // Cabeçalho para o formato CSV
+            for (let row of itemsList.rows) {
+                let barcode = row.cells[0].textContent;
+                let quantity = row.cells[1].textContent;
+                textToCopy += `${barcode},${quantity}\n`; // Formata os dados como CSV
+            }
+            
+            // Agora chama a função copyToClipboard com o texto a ser copiado
+            // Você pode usar copyToClipboardModern(textToCopy) se estiver usando a API de Área de Transferência
+            copyToClipboard(textToCopy);
         }
         
     </script>
