@@ -1,104 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contagem de Estoque</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem de Estoque</title>
 </head>
 <body>
-<h2>Contagem de Estoque</h2>
-<form id="itemForm">
-    <label for="quantity">Quantidade:</label>
-    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-    <label for="barcode">Código de Barras:</label>
-    <input type="text" id="barcode" name="barcode" required>
-    <button type="submit">Adicionar</button>
-</form>
-
-<h3>Itens Contados</h3>
-<table id="itemsList">
-    <thead>
-        <tr>
-            <th>Código de Barras</th>
-            <th>Quantidade</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Itens serão adicionados aqui -->
-    </tbody>
-</table>
-
-<script>// Carrega os itens quando a página é carregada
-document.addEventListener('DOMContentLoaded', function() {
-    loadItems();
-});
-
-document.getElementById('itemForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const barcode = document.getElementById('barcode').value;
-    const quantity = parseInt(document.getElementById('quantity').value, 10);
-    addItemToList(barcode, quantity);
-});
-
-function addItemToList(barcode, quantity) {
-    const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
-    let itemExists = false;
+    <h2>Contagem de Estoque</h2>
+    <form id="itemForm">
+        <label for="quantity">Quantidade:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        <label for="barcode">Código de Barras:</label>
+        <input type="text" id="barcode" name="barcode" required>
+        <button type="submit">Adicionar</button>
+    </form>
     
-    // Verifica e atualiza quantidade se o item já existe
-    for (let row of itemsList.rows) {
-        if (row.cells[0].textContent === barcode) {
-            itemExists = true;
-            row.cells[1].textContent = parseInt(row.cells[1].textContent) + quantity;
-            row.style.backgroundColor = '#FFD700'; // Highlight
-            break;
+    <h3>Itens Contados</h3>
+    <table id="itemsList">
+        <thead>
+            <tr>
+                <th>Código de Barras</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itens serão adicionados aqui -->
+        </tbody>
+    </table>
+    
+    <script>// Carrega os itens quando a página é carregada
+        document.addEventListener('DOMContentLoaded', function() {
+            loadItems();
+            
+        });
+        
+        document.getElementById('itemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const barcode = document.getElementById('barcode').value;
+            const quantity = parseInt(document.getElementById('quantity').value, 10);
+            addItemToList(barcode, quantity);
+            var jbarcode = $('#barcode').val();
+            var jquantity = $('#quantity').val();
+
+            $.ajax({
+                url: 'www.100nome.com.br/app/contagem.php', // Substitua pela URL do seu script PHP
+                type: 'POST',
+                dataType: 'JSON', // ou 'json', se o seu script PHP retornar JSON
+                data: {
+                    jbarcode: jbarcode,
+                    jquantity: jquantity,
+                },
+                success: function(resultado) {
+                    console.log('Resposta do servidor:', resultado);
+                },
+                error: function() {
+                    alert('Erro na consulta dos produtos.');
+                }
+            });
+            
+        });
+        
+        function addItemToList(barcode, quantity) {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            let itemExists = false;
+            
+            // Verifica e atualiza quantidade se o item já existe
+            for (let row of itemsList.rows) {
+                if (row.cells[0].textContent === barcode) {
+                    itemExists = true;
+                    row.cells[1].textContent = parseInt(row.cells[1].textContent) + quantity;
+                    row.style.backgroundColor = '#FFD700'; // Highlight
+                    break;
+                }
+            }
+            
+            // Adiciona novo item se não existir
+            if (!itemExists) {
+                const newRow = itemsList.insertRow();
+                const cellBarcode = newRow.insertCell(0);
+                const cellQuantity = newRow.insertCell(1);
+                
+                cellBarcode.textContent = barcode;
+                cellQuantity.textContent = quantity;
+            }
+            
+            saveItems(); // Salva a lista atualizada no LocalStorage
+            
+            document.getElementById('barcode').value = '';
+            document.getElementById('quantity').value = '1';
+            document.getElementById('barcode').focus();
         }
-    }
-
-    // Adiciona novo item se não existir
-    if (!itemExists) {
-        const newRow = itemsList.insertRow();
-        const cellBarcode = newRow.insertCell(0);
-        const cellQuantity = newRow.insertCell(1);
-
-        cellBarcode.textContent = barcode;
-        cellQuantity.textContent = quantity;
-    }
-
-    saveItems(); // Salva a lista atualizada no LocalStorage
-
-    document.getElementById('barcode').value = '';
-    document.getElementById('quantity').value = '1';
-    document.getElementById('barcode').focus();
-}
-
-function saveItems() {
-    const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
-    const itemsArray = [];
-
-    for (let row of itemsList.rows) {
-        itemsArray.push({ barcode: row.cells[0].textContent, quantity: row.cells[1].textContent });
-    }
-
-    localStorage.setItem('items', JSON.stringify(itemsArray));
-}
-
-function loadItems() {
-    const items = JSON.parse(localStorage.getItem('items'));
-    if (items) {
-        const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
-        itemsList.innerHTML = ''; // Limpa a lista atual
-
-        for (let item of items) {
-            const newRow = itemsList.insertRow();
-            const cellBarcode = newRow.insertCell(0);
-            const cellQuantity = newRow.insertCell(1);
-
-            cellBarcode.textContent = item.barcode;
-            cellQuantity.textContent = item.quantity;
+        
+        function saveItems() {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            const itemsArray = [];
+            
+            for (let row of itemsList.rows) {
+                itemsArray.push({ barcode: row.cells[0].textContent, quantity: row.cells[1].textContent });
+            }
+            
+            localStorage.setItem('items', JSON.stringify(itemsArray));
         }
-    }
-}
-</script>
+        
+        function loadItems() {
+            const items = JSON.parse(localStorage.getItem('items'));
+            if (items) {
+                const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+                itemsList.innerHTML = ''; // Limpa a lista atual
+                
+                for (let item of items) {
+                    const newRow = itemsList.insertRow();
+                    const cellBarcode = newRow.insertCell(0);
+                    const cellQuantity = newRow.insertCell(1);
+                    
+                    cellBarcode.textContent = item.barcode;
+                    cellQuantity.textContent = item.quantity;
+                }
+            }
+        }
+        
+    </script>
 </body>
 </html>
