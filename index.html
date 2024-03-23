@@ -9,6 +9,7 @@
     </style>
 </head>
 <body>
+    <button id="deleteCookiesBtn">Apagar Cookies</button>
     <h2>Contagem de Estoque</h2>
     
     <!-- Seleção de Listas -->
@@ -178,7 +179,7 @@
                 });
             }
         }
-
+        
         function removeItemFromList(barcode) {
             const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
             for (let row of itemsList.rows) {
@@ -245,6 +246,27 @@
             // Você pode usar copyToClipboardModern(textToCopy) se estiver usando a API de Área de Transferência
             copyToClipboard(textToCopy);
         }
+        function deleteCookie(name, path, domain) {
+            if (getCookie(name)) {
+                document.cookie = name + "=" +
+                ((path) ? ";path=" + path : "") +
+                ((domain) ? ";domain=" + domain : "") +
+                ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+            }
+        }
+        
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+        
+        // Exemplo de uso
+        document.getElementById('deleteCookiesBtn').addEventListener('click', function() {
+            // Substitua 'myCookieName' pelo nome real do cookie
+            // Além disso, ajuste 'path' e 'domain' conforme necessário
+            deleteCookie('myCookieName', '/', 'mydomain.com');
+        });
         
     </script>
 </body>
