@@ -10,6 +10,22 @@ document.getElementById('itemForm').addEventListener('submit', function(event) {
     const quantity = parseInt(document.getElementById('quantity').value, 10);
     addItemToList(barcode, quantity);
 });
+let produtos = [];
+
+function loadProdutos() {
+    fetch('produtos.json')
+        .then(response => response.json())
+        .then(data => {
+            produtos = data;
+        })
+        .catch(error => console.error('Erro ao carregar produtos:', error));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadProdutos();
+    loadListsNames();
+    loadItems(currentListName);
+});
 
 function addItemToList(barcode, quantity) {
     const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
@@ -24,15 +40,20 @@ function addItemToList(barcode, quantity) {
             break;
         }
     }
+    const produto = produtos.find(p => p.ean === barcode);
+    const nomeProduto = produto ? produto.nome : 'Produto não encontrado';
+
 
     // Adiciona novo item se não existir
     if (!itemExists) {
         const newRow = itemsList.insertRow();
         const cellBarcode = newRow.insertCell(0);
         const cellQuantity = newRow.insertCell(1);
+        const cellNome = newRow.insertCell(2); // Nova célula para o nome do produto
 
         cellBarcode.textContent = barcode;
         cellQuantity.textContent = quantity;
+        cellNome.textContent = nomeProduto; // Define o nome do produto na célula
     }
 
     saveItems(); // Salva a lista atualizada no LocalStorage
