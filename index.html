@@ -116,7 +116,8 @@
                 if (row.cells[0].textContent === barcode) {
                     itemExists = true;
                     row.cells[1].textContent = parseInt(row.cells[1].textContent) + quantity;
-                    row.style.backgroundColor = 'lightcoral';
+                    row.classList.remove('bg-primary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info');
+                    row.classList.add('bg-warning'); 
                     // Movendo a linha para o topo se o item já existe
                     itemsList.insertBefore(row, itemsList.firstChild);
                     break;
