@@ -1,67 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem de Estoque</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Adicione seu CSS aqui */
+    </style>
 </head>
 <body>
-    <div class="container py-5">
-        <h2 class="mb-4">Contagem de Estoque</h2>
-        
-        <!-- Seleção de Listas -->
-        <div class="mb-3">
-            <label for="listSelector" class="form-label">Selecione a Lista:</label>
-            <div class="input-group mb-3">
-                <select id="listSelector" class="form-select" onchange="changeList(this.value)">
-                    <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
-                </select>
-                <button class="btn btn-outline-secondary" type="button" onclick="createNewList()">Criar Nova Lista</button>
-            </div>
-        </div>
-        
-        <!-- Formulário para adicionar itens -->
-        <form id="itemForm" class="mb-4">
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label for="quantity" class="col-form-label">Qtde:</label>
-                </div>
-                <div class="col-auto">
-                    <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" required>
-                </div>
-                <div class="col-auto">
-                    <label for="barcode" class="col-form-label">Barras:</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" id="barcode" name="barcode" class="form-control" required>
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">Adicionar</button>
-                </div>
-            </div>
-        </form>
-        
-        <div class="mb-3">
-            <h3>Itens Contados</h3>
-            <button class="btn btn-info" onclick="copyItemsToClipboard()">Copiar Dados</button>
-        </div>
-        <table id="itemsList" class="table">
-            <thead>
-                <tr>
-                    <th>Barras</th>
-                    <th>Quantidade</th>
-                    <th>Nome do Produto</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Itens serão adicionados aqui pelo JavaScript -->
-            </tbody>
-        </table>
+    <h2>Contagem de Estoque</h2>
+    
+    <!-- Seleção de Listas -->
+    <div>
+        <label for="listSelector">Selecione a Lista:</label>
+        <select id="listSelector" onchange="changeList(this.value)">
+            <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
+        </select>
+        <button onclick="createNewList()">Criar Nova Lista</button>
     </div>
     
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <!-- Formulário para adicionar itens -->
+    <form id="itemForm">
+        <label for="quantity">Qtde:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        <label for="barcode">Barras:</label>
+        <input type="text" id="barcode" name="barcode" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    
+    <h3>Itens Contados</h3> <button onclick="copyItemsToClipboard()">Copiar Dados</button>
+    <table id="itemsList">
+        <thead>
+            <tr>
+                <th>Barras</th>
+                <th>Quantidade</th>
+                <th>Nome do Produto</th> <!-- Nova coluna -->
+                <th>Remover</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <!-- Itens serão adicionados aqui pelo JavaScript -->
+        </tbody>
+    </table>
+    
     
     <script>// Carrega os itens quando a página é carregada
         
@@ -116,8 +99,7 @@
                 if (row.cells[0].textContent === barcode) {
                     itemExists = true;
                     row.cells[1].textContent = parseInt(row.cells[1].textContent) + quantity;
-                    row.classList.remove('bg-primary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info');
-                    row.classList.add('bg-warning'); 
+                    row.style.backgroundColor = 'lightcoral';
                     // Movendo a linha para o topo se o item já existe
                     itemsList.insertBefore(row, itemsList.firstChild);
                     break;
