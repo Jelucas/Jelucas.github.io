@@ -16,6 +16,11 @@
                 font-size: 0.8rem; /* Ainda menor para telas pequenas */
             }
         }
+        .bg-danger {
+            background-color: #dc3545;
+            font-weight: bold;
+            
+        }
     </style>
     
 </head>
@@ -23,11 +28,12 @@
     <h2>Contagem de Estoque</h2>
     <!-- Seleção de Listas -->
     <div>
+        <div><button onclick="createNewList()">Criar Nova Lista</button></div>
         <label for="listSelector">Selecione a Lista:</label>
         <select id="listSelector" onchange="changeList(this.value)">
             <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
         </select>
-        <button onclick="createNewList()">Criar Nova Lista</button>
+        <button class="bg-danger" onclick="removeCurrentList()">Remover Lista</button>
     </div>
     
     <!-- Formulário para adicionar itens -->
@@ -203,24 +209,11 @@
                             removeBtn.addEventListener('click', function() {
                                 newRow.remove(); // Remove a linha atual
                                 saveItems(); // Atualiza o localStorage após a remoção
+                                document.getElementById('barcode').focus();
                             });
-                            
                             cellRemoveBtn.appendChild(removeBtn);
                         });
                     }
-                }
-                
-                
-                
-                function removeItemFromList(barcode) {
-                    const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
-                    for (let row of itemsList.rows) {
-                        if (row.cells[0].textContent === barcode) {
-                            row.remove();
-                            break;
-                        }
-                    }
-                    saveItems(); // Salva a lista atualizada no LocalStorage
                 }
                 
                 function changeList(newListName) {
@@ -233,7 +226,6 @@
                 }
                 
                 // Função adicional para copiar dados para a área de transferência
-                
                 
                 function loadListsNames() {
                     const lists = JSON.parse(localStorage.getItem('lists')) || {};
@@ -254,11 +246,19 @@
                             localStorage.setItem('lists', JSON.stringify(lists));
                             loadListsNames(); // Atualiza o seletor de listas
                             changeList(listName); // Muda para a nova lista
+                            
+                            // Define a nova lista como a opção selecionada
+                            const listSelector = document.getElementById('listSelector');
+                            listSelector.value = listName;
+                            
+                            // Definir o foco para o campo de código de barras
+                            document.getElementById('barcode').focus();
                         } else {
                             alert("Uma lista com esse nome já existe.");
                         }
                     }
                 }
+                
                 function copyToClipboard(text) {
                     navigator.clipboard.writeText(text).then(function() {
                         alert('Dados copiados com sucesso!');
@@ -277,6 +277,33 @@
                     
                     copyToClipboard(textToCopy);
                 }
+                function removeCurrentList() {
+                    let listName = document.getElementById('listSelector').value; // Obtém o nome da lista atualmente selecionada
+                    if (listName && confirm("Tem certeza que deseja remover a lista atual?")) {
+                        let lists = JSON.parse(localStorage.getItem('lists')) || {};
+                        
+                        if (lists[listName]) {
+                            delete lists[listName]; // Remove a lista do objeto
+                            localStorage.setItem('lists', JSON.stringify(lists)); // Atualiza o localStorage
+                            
+                            loadListsNames(); // Atualiza o seletor de listas para refletir a remoção
+                            
+                            if (Object.keys(lists).length > 0) {
+                                // Se ainda existem listas, seleciona a primeira disponível
+                                changeList(Object.keys(lists)[0]);
+                            } else {
+                                // Se não existem mais listas, limpa a visualização
+                                document.getElementById('listSelector').selectedIndex = -1;
+                                document.getElementById('itemsList').getElementsByTagName('tbody')[0].innerHTML = '';
+                                // Considerar limpar outros elementos da UI conforme necessário
+                            }
+                            
+                            // Definir o foco de volta para o campo de código de barras
+                            document.getElementById('barcode').focus();
+                        }
+                    }
+                }
+                
             </script>
-</body>
-</html>
+        </body>
+        </html>
