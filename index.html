@@ -101,6 +101,12 @@
             const produto = produtos.find(p => p.ean ? p.ean.toString() === barcode : false);
             if (produto) {
                 produtoNome = produto.nome;
+                const numeroAleatorio = Math.floor(Math.random() * 3) + 1;
+
+                const nomeDoArquivo = `${numeroAleatorio}.mp3`;
+                const audio = new Audio(nomeDoArquivo);
+
+                audio.play();
             }else{
                 const audio = new Audio('som.mp3');
                 audio.play();
