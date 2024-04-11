@@ -121,7 +121,7 @@
             const produto = produtos.find(p => p.ean ? p.ean.toString() === barcode : false);
             if (produto) {
                 produtoNome = produto.nome;
-                const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+                const numeroAleatorio = Math.floor(Math.random() * 10) + 1-1+1;
                 audiosPreloaded[numeroAleatorio.toString()].play();
             } else {
                 // Se nenhum produto foi encontrado, reproduzir o som.mp3 pré-carregado
