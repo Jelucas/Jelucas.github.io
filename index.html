@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem de Estoque</title>
     <style>
+        /* Estilos existentes */
+        
         .nome-produto {
             font-size: 0.9rem; /* Tamanho menor da fonte para nomes de produtos */
         }
@@ -17,6 +19,7 @@
         .bg-danger {
             background-color: #dc3545;
             font-weight: bold;
+            
         }
     </style>
     
@@ -158,6 +161,7 @@
                 removeBtn.addEventListener('click', function() {
                     newRow.remove(); // Remove a linha atual
                     saveItems(); // Atualiza o localStorage após a remoção
+                    document.getElementById('barcode').focus();
                 });
                 
                 cellRemoveBtn.appendChild(removeBtn);
@@ -195,7 +199,7 @@
             const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
             itemsList.innerHTML = ''; // Limpa a lista atual antes de adicionar os itens salvos
             
-            if (items) {
+            if (items && Array.isArray(items)) { // Verifica se items existe e é um array
                 items.forEach(item => {
                     const newRow = itemsList.insertRow(-1); // Adiciona a nova linha no final da tabela
                     const cellBarcode = newRow.insertCell(0);
@@ -207,21 +211,18 @@
                         const barcodeSpan = document.createElement('span');
                         barcodeSpan.textContent = item.barcode;
                         barcodeSpan.className = 'nome-produto';
-                        cellBarcode.innerHTML = ''; // Limpa o conteúdo existente
                         cellBarcode.appendChild(barcodeSpan);
                         
                         // Cria e adiciona o <span> para quantity
                             const quantitySpan = document.createElement('span');
                             quantitySpan.textContent = item.quantity;
                             quantitySpan.className = 'nome-produto';
-                            cellQuantity.innerHTML = ''; // Limpa o conteúdo existente
                             cellQuantity.appendChild(quantitySpan);
                             
-                            // Repete o processo similar para o nome do produto
+                            // Processo similar para o nome do produto
                             const nomeProdutoSpan = document.createElement('span');
                             nomeProdutoSpan.textContent = item.nome || 'Produto não encontrado';
                             nomeProdutoSpan.className = 'nome-produto';
-                            cellNome.innerHTML = ''; // Limpa o conteúdo existente
                             cellNome.appendChild(nomeProdutoSpan);
                             
                             // Cria o botão de remoção para cada linha
@@ -234,6 +235,8 @@
                             });
                             cellRemoveBtn.appendChild(removeBtn);
                         });
+                    } else {
+                        console.log('Nenhum item encontrado para a lista:', listName);
                     }
                 }
                 
@@ -245,9 +248,6 @@
                     currentListName = newListName;
                     loadItems(currentListName);
                 }
-                
-                // Função adicional para copiar dados para a área de transferência
-                
                 function loadListsNames() {
                     const lists = JSON.parse(localStorage.getItem('lists')) || {};
                     const listSelector = document.getElementById('listSelector');
@@ -257,7 +257,6 @@
                         listSelector.add(option);
                     }
                 }
-                
                 function createNewList() {
                     let listName = prompt("Nome da nova lista:");
                     if (listName) {
@@ -279,7 +278,6 @@
                         }
                     }
                 }
-                
                 function copyToClipboard(text) {
                     navigator.clipboard.writeText(text).then(function() {
                         alert('Dados copiados com sucesso!');
@@ -299,32 +297,22 @@
                     copyToClipboard(textToCopy);
                 }
                 function removeCurrentList() {
-                    let listName = document.getElementById('listSelector').value; // Obtém o nome da lista atualmente selecionada
+                    let listName = document.getElementById('listSelector').value;
                     if (listName && confirm("Tem certeza que deseja remover a lista atual?")) {
                         let lists = JSON.parse(localStorage.getItem('lists')) || {};
+                        console.log("Listas antes da remoção:", lists);
                         
                         if (lists[listName]) {
-                            delete lists[listName]; // Remove a lista do objeto
-                            localStorage.setItem('lists', JSON.stringify(lists)); // Atualiza o localStorage
+                            delete lists[listName];  // Executa a remoção da lista
+                            localStorage.setItem('lists', JSON.stringify(lists));  // Atualiza o localStorage
+                            console.log("Listas após a remoção:", JSON.parse(localStorage.getItem('lists')));
                             
-                            loadListsNames(); // Atualiza o seletor de listas para refletir a remoção
-                            
-                            if (Object.keys(lists).length > 0) {
-                                // Se ainda existem listas, seleciona a primeira disponível
-                                changeList(Object.keys(lists)[0]);
-                            } else {
-                                // Se não existem mais listas, limpa a visualização
-                                document.getElementById('listSelector').selectedIndex = -1;
-                                document.getElementById('itemsList').getElementsByTagName('tbody')[0].innerHTML = '';
-                                // Considerar limpar outros elementos da UI conforme necessário
-                            }
-                            
-                            // Definir o foco de volta para o campo de código de barras
-                            document.getElementById('barcode').focus();
+                            loadListsNames();  // Recarrega as listas na interface
+                        } else {
+                            alert("A lista selecionada não foi encontrada ou já foi removida.");
                         }
                     }
                 }
-                
             </script>
         </body>
         </html>
