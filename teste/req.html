@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<meta charset="utf-8">
+<title>Teste Ajax</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: 'https://100nome.com.br/contagem/resp.php', // O caminho para o arquivo PHP que você quer acessar
+        type: 'GET', // O método HTTP: GET ou POST
+        success: function(response) {
+            // Este código é executado após a requisição ser bem-sucedida.
+            // 'response' contém o que foi enviado de volta pelo servidor
+            console.log(response['result']); // Mostra a resposta do servidor no console
+            // Aqui você pode, por exemplo, inserir a resposta em um elemento HTML
+            $('#resultado').html(response['result']);
+        },
+        error: function(xhr, status, error) {
+            // Este código é executado se houver algum erro na requisição
+            console.error("Erro na requisição: ", status, error);
+        }
+    });
+});
+
+</script>
+</head>
+<body>
+<div id="resultado"></div>
+
+</body>
+
+</html>

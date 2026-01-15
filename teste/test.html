@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem de Estoque</title>
+    <style>
+        .nome-produto {
+            font-size: 0.9rem; /* Tamanho menor da fonte para nomes de produtos */
+        }
+        
+        @media (max-width: 600px) { /* Para telas menores, como celulares */
+            .nome-produto {
+                font-size: 0.8rem; /* Ainda menor para telas pequenas */
+            }
+        }
+        .bg-danger {
+            background-color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+    
+</head>
+<body>
+    <h2>Contagem de Estoque</h2>
+    <!-- Seleção de Listas -->
+    <div>
+        <div><button onclick="createNewList()">Criar Nova Lista</button></div>
+        <label for="listSelector">Selecione a Lista:</label>
+        <select id="listSelector" onchange="changeList(this.value)">
+            <!-- As opções serão adicionadas dinamicamente pelo JavaScript -->
+        </select>
+        <button class="bg-danger" onclick="removeCurrentList()">Remover Lista</button>
+    </div>
+    
+    <!-- Formulário para adicionar itens -->
+    <form id="itemForm">
+        <label for="quantity">Qtde:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        <label for="barcode">Barras:</label>
+        <input type="text" id="barcode" name="barcode" required>
+        <button type="submit">Adicionar</button>
+    </form>
+    
+    <h3>Itens Contados</h3> <button onclick="copyItemsToClipboard()">Copiar Dados</button>
+    <table id="itemsList">
+        <thead>
+            <tr>
+                <th><span class="nome-produto">Barras</span></th>
+                <th><span class="nome-produto">Quantidade</span></th>
+                <th><span class="nome-produto">Nome do Produto</span></th> <!-- Nova coluna -->
+                <th><span class="nome-produto">Remover</span></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <!-- Itens serão adicionados aqui pelo JavaScript -->
+        </tbody>
+    </table>
+    <script>// Carrega os itens quando a página é carregada
+        let audiosPreloaded = {
+            '1': new Audio('1.mp3'),
+            '2': new Audio('2.mp3'),
+            '3': new Audio('3.mp3'),
+            '4': new Audio('4.mp3'),
+            '5': new Audio('5.mp3'),
+            '6': new Audio('6.mp3'),
+            '7': new Audio('7.mp3'),
+            '8': new Audio('8.mp3'),
+            '9': new Audio('9.mp3'),
+            '10': new Audio('10.mp3'),
+            'som': new Audio('som.mp3') // Adicionando o som.mp3 ao pré-carregamento
+        };
+        
+        audiosPreloaded['1'].preload = 'auto';
+        audiosPreloaded['2'].preload = 'auto';
+        audiosPreloaded['3'].preload = 'auto';
+        audiosPreloaded['4'].preload = 'auto';
+        audiosPreloaded['5'].preload = 'auto';
+        audiosPreloaded['6'].preload = 'auto';
+        audiosPreloaded['7'].preload = 'auto';
+        audiosPreloaded['8'].preload = 'auto';
+        audiosPreloaded['9'].preload = 'auto';
+        audiosPreloaded['10'].preload = 'auto';
+        audiosPreloaded['som'].preload = 'auto';
+        
+        // Variável para armazenar o nome da lista atual
+        let currentListName = 'listaPadrao';
+        let produtos = [];
+        function loadProdutos() {
+            fetch('produtos.json')
+            .then(response => response.json())
+            .then(data => {
+                produtos = data;
+            })
+            .catch(error => console.error('Erro ao carregar produtos:', error));
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProdutos();
+            loadListsNames();
+            loadItems(currentListName);
+        });
+        document.getElementById('itemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let barcode = document.getElementById('barcode').value;
+            // Remove qualquer caractere que não seja um dígito
+            barcode = barcode.replace(/\D/g, '');
+            
+            const quantity = parseInt(document.getElementById('quantity').value, 10);
+            addItemToList(barcode, quantity);
+        });
+        function addItemToList(barcode, quantity) {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            let itemExists = false;
+            let produtoNome = 'Produto não encontrado';
+            let newRow, cellBarcode, cellQuantity, cellNome, cellRemoveBtn;
+            
+            // Procura pelo nome do produto baseado no barcode
+            const produto = produtos.find(p => p.ean ? p.ean.toString() === barcode : false);
+            if (produto) {
+                produtoNome = produto.nome;
+                const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+                audiosPreloaded[numeroAleatorio.toString()].play();
+            } else {
+                // Se nenhum produto foi encontrado, reproduzir o som.mp3 pré-carregado
+                audiosPreloaded['som'].play();
+            }
+            
+            // Verifica e atualiza a quantidade se o item já existe
+            for (let row of itemsList.rows) {
+                if (row.cells[0].textContent === barcode) {
+                    itemExists = true;
+                    row.cells[1].textContent = parseInt(row.cells[1].textContent) + quantity;
+                    row.style.backgroundColor = 'lightcoral';
+                    // Movendo a linha para o topo se o item já existe
+                    itemsList.insertBefore(row, itemsList.firstChild);
+                    break;
+                }
+            }
+            // Adiciona um novo item se ele não existir
+            if (!itemExists) {
+                newRow = itemsList.insertRow(0); // Insere a nova linha no início da tabela
+                cellBarcode = newRow.insertCell(0);
+                cellQuantity = newRow.insertCell(1);
+                cellNome = newRow.insertCell(2);
+                cellRemoveBtn = newRow.insertCell(3);
+                
+                
+                cellBarcode.innerHTML = `<span class="nome-produto">${barcode}</span>`;
+                cellQuantity.innerHTML = `<span class="nome-produto">${quantity}</span>`;
+                cellNome.innerHTML = `<span class="nome-produto">${produtoNome}</span>`;
+                
+                // Cria o botão de remoção e o adiciona à célula correspondente
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remover';
+                removeBtn.addEventListener('click', function() {
+                    newRow.remove(); // Remove a linha atual
+                    saveItems(); // Atualiza o localStorage após a remoção
+                });
+                
+                cellRemoveBtn.appendChild(removeBtn);
+            }
+            
+            saveItems(); // Salva a lista atualizada no localStorage
+            
+            // Limpa o formulário para a próxima entrada
+            document.getElementById('barcode').value = '';
+            document.getElementById('quantity').value = '1';
+            document.getElementById('barcode').focus();
+        }
+        function saveItems() {
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            const itemsArray = [];
+            
+            for (let row of itemsList.rows) {
+                // Supondo que o nome do produto esteja na terceira célula (índice 2)
+                const nomeProduto = row.cells[2] ? row.cells[2].textContent : '';
+                itemsArray.push({
+                    barcode: row.cells[0].textContent,
+                    quantity: row.cells[1].textContent,
+                    nome: nomeProduto // Salvando o nome do produto
+                });
+            }
+            
+            let lists = JSON.parse(localStorage.getItem('lists')) || {};
+            lists[currentListName] = itemsArray;
+            localStorage.setItem('lists', JSON.stringify(lists));
+        }
+        
+        function loadItems(listName) {
+            const lists = JSON.parse(localStorage.getItem('lists')) || {};
+            const items = lists[listName];
+            const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+            itemsList.innerHTML = ''; // Limpa a lista atual antes de adicionar os itens salvos
+            
+            if (items) {
+                items.forEach(item => {
+                    const newRow = itemsList.insertRow(-1); // Adiciona a nova linha no final da tabela
+                    const cellBarcode = newRow.insertCell(0);
+                    const cellQuantity = newRow.insertCell(1);
+                    const cellNome = newRow.insertCell(2);
+                    const cellRemoveBtn = newRow.insertCell(3);
+                    
+                    // Cria e adiciona o <span> para barcode
+                        const barcodeSpan = document.createElement('span');
+                        barcodeSpan.textContent = item.barcode;
+                        barcodeSpan.className = 'nome-produto';
+                        cellBarcode.innerHTML = ''; // Limpa o conteúdo existente
+                        cellBarcode.appendChild(barcodeSpan);
+                        
+                        // Cria e adiciona o <span> para quantity
+                            const quantitySpan = document.createElement('span');
+                            quantitySpan.textContent = item.quantity;
+                            quantitySpan.className = 'nome-produto';
+                            cellQuantity.innerHTML = ''; // Limpa o conteúdo existente
+                            cellQuantity.appendChild(quantitySpan);
+                            
+                            // Repete o processo similar para o nome do produto
+                            const nomeProdutoSpan = document.createElement('span');
+                            nomeProdutoSpan.textContent = item.nome || 'Produto não encontrado';
+                            nomeProdutoSpan.className = 'nome-produto';
+                            cellNome.innerHTML = ''; // Limpa o conteúdo existente
+                            cellNome.appendChild(nomeProdutoSpan);
+                            
+                            // Cria o botão de remoção para cada linha
+                            const removeBtn = document.createElement('button');
+                            removeBtn.textContent = 'Remover';
+                            removeBtn.addEventListener('click', function() {
+                                newRow.remove(); // Remove a linha atual
+                                saveItems(); // Atualiza o localStorage após a remoção
+                                document.getElementById('barcode').focus();
+                            });
+                            cellRemoveBtn.appendChild(removeBtn);
+                        });
+                    }
+                }
+                
+                function changeList(newListName) {
+                    // Esta função é chamada quando o usuário seleciona uma nova lista
+                    // Salva a lista atual antes de mudar
+                    saveItems(currentListName);           
+                    // Atualiza a lista atual e carrega os itens da nova lista
+                    currentListName = newListName;
+                    loadItems(currentListName);
+                }
+                
+                // Função adicional para copiar dados para a área de transferência
+                
+                function loadListsNames() {
+                    const lists = JSON.parse(localStorage.getItem('lists')) || {};
+                    const listSelector = document.getElementById('listSelector');
+                    listSelector.innerHTML = ''; // Limpa as opções existentes
+                    for (let listName in lists) {
+                        let option = new Option(listName, listName);
+                        listSelector.add(option);
+                    }
+                }
+                
+                function createNewList() {
+                    let listName = prompt("Nome da nova lista:");
+                    if (listName) {
+                        let lists = JSON.parse(localStorage.getItem('lists')) || {};
+                        if (!lists[listName]) {
+                            lists[listName] = []; // Cria uma lista vazia
+                            localStorage.setItem('lists', JSON.stringify(lists));
+                            loadListsNames(); // Atualiza o seletor de listas
+                            changeList(listName); // Muda para a nova lista
+                            
+                            // Define a nova lista como a opção selecionada
+                            const listSelector = document.getElementById('listSelector');
+                            listSelector.value = listName;
+                            
+                            // Definir o foco para o campo de código de barras
+                            document.getElementById('barcode').focus();
+                        } else {
+                            alert("Uma lista com esse nome já existe.");
+                        }
+                    }
+                }
+                
+                function copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        alert('Dados copiados com sucesso!');
+                    }, function(err) {
+                        alert('Erro ao copiar dados: ', err);
+                    });
+                }
+                function copyItemsToClipboard() {
+                    const itemsList = document.getElementById('itemsList').getElementsByTagName('tbody')[0];
+                    let textToCopy = "Barras,Quantidade\n"; // Cabeçalho para o formato CSV
+                    for (let row of itemsList.rows) {
+                        let barcode = row.cells[0].textContent;
+                        let quantity = row.cells[1].textContent;
+                        textToCopy += `${barcode},${quantity}\n`; // Formata os dados como CSV
+                    }
+                    
+                    copyToClipboard(textToCopy);
+                }
+                function removeCurrentList() {
+                    let listName = document.getElementById('listSelector').value; // Obtém o nome da lista atualmente selecionada
+                    if (listName && confirm("Tem certeza que deseja remover a lista atual?")) {
+                        let lists = JSON.parse(localStorage.getItem('lists')) || {};
+                        
+                        if (lists[listName]) {
+                            delete lists[listName]; // Remove a lista do objeto
+                            localStorage.setItem('lists', JSON.stringify(lists)); // Atualiza o localStorage
+                            
+                            loadListsNames(); // Atualiza o seletor de listas para refletir a remoção
+                            
+                            if (Object.keys(lists).length > 0) {
+                                // Se ainda existem listas, seleciona a primeira disponível
+                                changeList(Object.keys(lists)[0]);
+                            } else {
+                                // Se não existem mais listas, limpa a visualização
+                                document.getElementById('listSelector').selectedIndex = -1;
+                                document.getElementById('itemsList').getElementsByTagName('tbody')[0].innerHTML = '';
+                                // Considerar limpar outros elementos da UI conforme necessário
+                            }
+                            
+                            // Definir o foco de volta para o campo de código de barras
+                            document.getElementById('barcode').focus();
+                        }
+                    }
+                }
+                
+            </script>
+        </body>
+        </html>
