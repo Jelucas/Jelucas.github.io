@@ -1,0 +1,77 @@
+:root { 
+    --primary: #007bff; 
+    --blood-red: #ff0000; /* Vermelho Sangue */
+    --yellow-text: #ffff00; /* Amarelo Puro */
+    --success: #28a745; 
+    --bg: #f4f7f6; 
+}
+
+body { 
+    font-family: -apple-system, sans-serif; 
+    margin: 0; padding: 10px; 
+    background: var(--bg); 
+    padding-top: 75px; 
+}
+
+/* Header Fixo */
+.header-fixed { 
+    position: fixed; top: 0; left: 0; right: 0; 
+    padding: 10px; background: var(--bg); z-index: 1000; 
+}
+
+/* BOTÃO EXPORTAR: Vermelho Sangue com Texto Amarelo */
+.btn-export { 
+    background-color: var(--blood-red) !important; 
+    color: var(--yellow-text) !important; 
+    padding: 15px; width: 100%; border: none; 
+    border-radius: 8px; font-weight: bold; 
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Accordion */
+.accordion { background: white; border-radius: 8px; margin-bottom: 10px; border: 1px solid #ddd; }
+.accordion-header { padding: 12px; background: #eee; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
+.accordion-content { display: none; padding: 15px; }
+.accordion-content.active { display: block; }
+
+/* Cards e Inputs */
+.card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; }
+input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+
+.btn-add { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-weight: bold; }
+
+/* Tabela */
+table { width: 100%; border-collapse: collapse; background: white; }
+th { background: #343a40; color: white; padding: 10px; font-size: 0.8rem; }
+td { padding: 12px; border-bottom: 1px solid #eee; }
+
+.item-nome { display: block; font-size: 0.75rem; color: #666; }
+
+/* ANIMAÇÃO PULSAR DE CORAÇÃO (LINHA NÃO CADASTRADA) */
+@keyframes pulsar-vermelho {
+    0% { background-color: #ffcccc; }
+    50% { background-color: #ff0000; }
+    100% { background-color: #ffcccc; }
+}
+
+.linha-nao-cadastrada { 
+    animation: pulsar-vermelho 1.2s ease-in-out infinite;
+}
+
+.linha-nao-cadastrada td, 
+.linha-nao-cadastrada strong, 
+.linha-nao-cadastrada .item-nome,
+.linha-nao-cadastrada .qty-val { 
+    color: #000000 !important; 
+    font-weight: bold;
+}
+
+/* Modais */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+.modal-content { background: white; padding: 20px; border-radius: 12px; width: 85%; max-width: 400px; }
+.modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+.btn-confirm { background: var(--primary); color: white; flex: 1; padding: 10px; border: none; border-radius: 5px; }
+.btn-cancel { background: #eee; flex: 1; padding: 10px; border: none; border-radius: 5px; }

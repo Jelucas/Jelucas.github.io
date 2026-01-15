@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor CSV para JSON</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        input[type="file"] { margin: 20px 0; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #218838; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; max-height: 400px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Conversor CSV para JSON</h2>
+    <p>Selecione o arquivo <strong>.csv</strong> (separado por ponto e vírgula) para converter.</p>
+    
+    <input type="file" id="csvFile" accept=".csv">
+    <br>
+    <button onclick="converter()">Converter e Baixar JSON</button>
+
+    <h3>Resultado:</h3>
+    <pre id="output">O resultado aparecerá aqui...</pre>
+</div>
+
+<script>
+    function converter() {
+        const fileInput = document.getElementById('csvFile');
+        const output = document.getElementById('output');
+
+        if (fileInput.files.length === 0) {
+            alert("Por favor, selecione um arquivo CSV primeiro.");
+            return;
+        }
+
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const text = e.target.result;
+            const rows = text.split('\n');
+            
+            // Pega o cabeçalho e define os índices das colunas
+            const headers = rows[0].split(';');
+            
+            const idxCodigo = headers.indexOf('Código');
+            const idxEan = headers.indexOf('Código de Barras');
+            const idxNome = headers.indexOf('Descrição');
+
+            if (idxCodigo === -1 || idxEan === -1 || idxNome === -1) {
+                alert("Erro: Colunas obrigatórias não encontradas. Verifique se o separador é ';' e se os nomes das colunas estão corretos.");
+                return;
+            }
+
+            const jsonResult = [];
+
+            // Começa do 1 para pular o cabeçalho
+            for (let i = 1; i < rows.length; i++) {
+                const line = rows[i].trim();
+                if (!line) continue; // Pula linhas vazias
+
+                const columns = line.split(';');
+
+                // Cria o objeto conforme o modelo de saída solicitado
+                const entry = {
+                    "ean": columns[idxEan] || "",
+                    "nome": columns[idxNome] || "",
+                    "codigo": Number(columns[idxCodigo]) || columns[idxCodigo]
+                };
+
+                jsonResult.push(entry);
+            }
+
+            // Exibe na tela
+            const jsonString = JSON.stringify(jsonResult, null, 2);
+            output.textContent = jsonString;
+
+            // Cria o download do arquivo
+            baixarJSON(jsonString, "produtos.json");
+        };
+
+        reader.readAsText(file, 'ISO-8859-1'); // Usa encoding comum para CSVs brasileiros (Excel)
+    }
+
+    function baixarJSON(conteudo, nomeArquivo) {
+        const blob = new Blob([conteudo], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = nomeArquivo;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+</body>
+</html>

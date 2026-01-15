@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SifferBip</title>
+    <link rel="stylesheet" href="style.css?v=1.5">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <div class="header-fixed">
+        <button onclick="exportarCSV()" class="btn-export">📤 ENVIAR RELATÓRIO (CSV)</button>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion()">⚙️ Gerenciar Listas <span id="acc-icon">▼</span></div>
+        <div id="acc-content" class="accordion-content">
+            <button class="btn-add" style="background:#6c757d; margin-bottom:10px" onclick="showPromptModal()">+ Criar Nova Lista</button>
+            <label>Trocar Lista:</label>
+            <select id="listSelector" onchange="changeList(this.value)"></select>
+            <button class="btn-add" style="background:none; color:red; border:1px solid red" onclick="showConfirmModal('Excluir esta lista?', () => removeCurrentList())">Excluir Lista Atual</button>
+        </div>
+    </div>
+
+    <form id="itemForm" class="card">
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1;"><label>Qtde</label><input type="number" id="quantity" value="1" inputmode="numeric"></div>
+            <div style="flex: 3;"><label>Barras</label><input type="text" id="barcode" inputmode="numeric" placeholder="Escanear..."></div>
+        </div>
+        <button type="submit" class="btn-add">ADICIONAR ITEM</button>
+    </form>
+
+    <div class="card" style="padding:0; overflow:hidden;">
+        <table id="itemsList">
+            <thead><tr><th>Produto / EAN</th><th width="50">Qtde</th><th width="40"></th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <div id="modalBody"></div>
+            <div class="modal-btns">
+                <button id="modalBtnCancel" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button id="modalBtnConfirm" class="btn-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="audio_manager.js?v=1.5"></script>
+    <script src="ui_manager.js?v=1.5"></script>
+    <script src="export_manager.js?v=1.5"></script>
+    <script src="app.js?v=1.5"></script>
+</body>
+</html>

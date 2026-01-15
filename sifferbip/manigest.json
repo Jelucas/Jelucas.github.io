@@ -1,0 +1,16 @@
+{
+  "name": "SifferBip",
+  "short_name": "SifferBip",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2633/2633935.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
