@@ -7475,7 +7475,7 @@
     "codigo": 9710
   },
   {
-    "ean": "27897474200077",
+    "ean": "7897474200073",
     "nome": "BRINQ GELEINHA AMOEBA DIVERTIDA**",
     "codigo": 6631
   },
@@ -10458,6 +10458,11 @@
     "ean": "7898942624988",
     "nome": "CAIXA CORREIO ACO MURO METALMIG",
     "codigo": 5556
+  },
+  {
+    "ean": "7898911728990",
+    "nome": "CAIXA DAGUA C/TAMPA 1500L FORTLEV",
+    "codigo": 12795
   },
   {
     "ean": "7891222100042",
@@ -23790,6 +23795,11 @@
     "codigo": 11947
   },
   {
+    "ean": "",
+    "nome": "ESM SINT BASE AGUA GL 3,6L BRANCO FOSCO EUCATEX",
+    "codigo": 12798
+  },
+  {
     "ean": "7896587051695",
     "nome": "ESM SINT BASE AGUA GL 3,6L BR EUCATEX*",
     "codigo": 4898
@@ -26410,6 +26420,11 @@
     "codigo": 11205
   },
   {
+    "ean": "6170",
+    "nome": "FIO CABO FLEX 1KV 35,0 PT COBRECOM",
+    "codigo": 6170
+  },
+  {
     "ean": "7898259252287",
     "nome": "FIO CABO FLEX 25,0  AZ COBRECOM",
     "codigo": 4781
@@ -26503,11 +26518,6 @@
     "ean": "7899674702531",
     "nome": "FIO CABO FLEX 6,0 VM MT COBRECOM*",
     "codigo": 5846
-  },
-  {
-    "ean": "6170",
-    "nome": "FIO CABO FLEX 750V 35,0 PT COBRECOM",
-    "codigo": 6170
   },
   {
     "ean": "",
@@ -28418,6 +28428,11 @@
     "ean": "",
     "nome": "FUNDO PREPARADOR 3,2LT PORTO COLLORS",
     "codigo": 7347
+  },
+  {
+    "ean": "",
+    "nome": "FUNDO PREPARADOR DUE PRO 300 15L BR EUCATEX",
+    "codigo": 12797
   },
   {
     "ean": "7896587050650",
@@ -31147,12 +31162,12 @@
   {
     "ean": "7899658318024",
     "nome": "KIT ALIC 3PÇS - UNIV, CORT, BICO HOUSE TOOLS *",
-    "codigo": 6131
+    "codigo": 6127
   },
   {
     "ean": "7899658318024",
     "nome": "KIT ALIC 3PÇS - UNIV, CORT, BICO HOUSE TOOLS *",
-    "codigo": 6127
+    "codigo": 6131
   },
   {
     "ean": "7899981105582",
@@ -34255,11 +34270,6 @@
     "codigo": 10810
   },
   {
-    "ean": "7899710013140",
-    "nome": "LUMI LED EMB QUAD 24W 6500K ECONOMAX*",
-    "codigo": 7483
-  },
-  {
     "ean": "7897013561610",
     "nome": "LUMI LED EMB QUAD 24W 6500K ELGIN",
     "codigo": 11112
@@ -34268,6 +34278,11 @@
     "ean": "7898586132566",
     "nome": "LUMI LED EMB QUAD 24W 6500K FOXLUX",
     "codigo": 12316
+  },
+  {
+    "ean": "7899710013140",
+    "nome": "LUMI LED EMB QUAD 24W 6500K LUCCI LIGHTING",
+    "codigo": 7483
   },
   {
     "ean": "7891435963861",
@@ -37565,11 +37580,6 @@
     "codigo": 10117
   },
   {
-    "ean": "",
-    "nome": "MEC CX ACOP SAIDA UNIVERSAL C/ CASTELO ASTRA MSU*",
-    "codigo": 10823
-  },
-  {
     "ean": "7891222216675",
     "nome": "MEC CX ACOP SAIDA UNIV PNEUM ACION REDONDO*",
     "codigo": 7337
@@ -40005,6 +40015,11 @@
     "codigo": 3859
   },
   {
+    "ean": "7898423896484",
+    "nome": "PARAF PH SOB 30X30",
+    "codigo": 12796
+  },
+  {
     "ean": "22",
     "nome": "PARAF PH SOB 35X12",
     "codigo": 22
@@ -40707,12 +40722,12 @@
   {
     "ean": "7893946029173",
     "nome": "PASTA SOLDA 110GR VONDER",
-    "codigo": 1875
+    "codigo": 367
   },
   {
     "ean": "7893946029173",
     "nome": "PASTA SOLDA 110GR VONDER",
-    "codigo": 367
+    "codigo": 1875
   },
   {
     "ean": "7898446730475",
@@ -40935,14 +40950,14 @@
     "codigo": 11608
   },
   {
-    "ean": "SEM GTIN",
-    "nome": "PENDENTE DIAMANTE ARAMADO CABO REGULAVEL 1M",
-    "codigo": 11889
-  },
-  {
     "ean": "",
     "nome": "PENDENTE DIAMANTE ARAMADO CABO REGULAVEL 1M",
     "codigo": 11878
+  },
+  {
+    "ean": "SEM GTIN",
+    "nome": "PENDENTE DIAMANTE ARAMADO CABO REGULAVEL 1M",
+    "codigo": 11889
   },
   {
     "ean": "7898938628631",
@@ -45881,11 +45896,6 @@
   },
   {
     "ean": "",
-    "nome": "REFLETOR LED 200W 6500K HITEC",
-    "codigo": 12443
-  },
-  {
-    "ean": "",
     "nome": "REFLETOR LED 200W 6500K PT 16000LM LED ALPHALED*",
     "codigo": 10621
   },
@@ -45913,6 +45923,11 @@
     "ean": "7898586130869",
     "nome": "REFLETOR LED 20W 6500K FOXLUX",
     "codigo": 11356
+  },
+  {
+    "ean": "",
+    "nome": "REFLETOR LED 300W 6500K IP 65 TRAMONTINA",
+    "codigo": 12443
   },
   {
     "ean": "7896451873200",
@@ -55095,7 +55110,7 @@
     "codigo": 6257
   },
   {
-    "ean": "7891222017753",
+    "ean": "7891222116722",
     "nome": "TANQUE PLAST PQ BR 13L 47X43X27 ASTRA*",
     "codigo": 4654
   },
@@ -60700,6 +60715,11 @@
     "codigo": 6212
   },
   {
+    "ean": "",
+    "nome": "USAR",
+    "codigo": 10823
+  },
+  {
     "ean": "618231668885",
     "nome": "VALV LAVATORIO CLICK 7/8 ROADY",
     "codigo": 11011
@@ -60800,7 +60820,7 @@
     "codigo": 8303
   },
   {
-    "ean": "7891222314456",
+    "ean": "7891222396391",
     "nome": "VALVULA DE ADMISSAO DE AR VAA/50MM ASTRA",
     "codigo": 11070
   },
@@ -61430,14 +61450,14 @@
     "codigo": 5012
   },
   {
-    "ean": "7898516418357",
-    "nome": "VARAO CORT 19MM 3,0MT BR CADIZ",
-    "codigo": 11255
-  },
-  {
     "ean": "7898516412065",
     "nome": "VARAO CORT 19MM 3,0MT BR CADIZ",
     "codigo": 8976
+  },
+  {
+    "ean": "7898516418357",
+    "nome": "VARAO CORT 19MM 3,0MT BR CADIZ",
+    "codigo": 11255
   },
   {
     "ean": "7898955076408",
