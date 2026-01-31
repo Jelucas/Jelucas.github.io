@@ -5,11 +5,6 @@
     "codigo": 11972
   },
   {
-    "ean": "7896451875457",
-    "nome": "2000 F24 BR KIT 5PCS QUADRA    CX/0003",
-    "codigo": 12011
-  },
-  {
     "ean": "7891040155354",
     "nome": "ABAFADOR DE RUIDO - 3M 1426",
     "codigo": 6323
@@ -1255,6 +1250,11 @@
     "codigo": 2915
   },
   {
+    "ean": "0618231662043",
+    "nome": "ADAPTADOR P/ FILTRO ROSCA 5/16 - MANGUEIRA 1/4 ROADY 1000514",
+    "codigo": 12821
+  },
+  {
     "ean": "7898198100069",
     "nome": "ADAPTADOR P/FURAD.1/2 MILKITS-KIT 6*",
     "codigo": 1082
@@ -1273,6 +1273,11 @@
     "ean": "7898198101479",
     "nome": "ADAPTADOR P/FURAD.ROSC.M14 MILK/233***",
     "codigo": 2914
+  },
+  {
+    "ean": "0618231664559",
+    "nome": "ADAPTADOR P/ MAQ R. INTERNA 5/16 - ROSCA EXTERNA 1/2 - 3/4 - ROADY 1148134",
+    "codigo": 12820
   },
   {
     "ean": "618231664122",
@@ -3640,6 +3645,11 @@
     "codigo": 5068
   },
   {
+    "ean": "7897210438586",
+    "nome": "ANEL DE RETENCAO (O-RING) C/ 12P BLUKIT",
+    "codigo": 12827
+  },
+  {
     "ean": "9270",
     "nome": "ANEL DE TUBETE DE HIDROMETRO 1\" REPACAR 862***",
     "codigo": 9270
@@ -4805,14 +4815,14 @@
     "codigo": 1080
   },
   {
-    "ean": "7891222299388",
-    "nome": "ASSENTO SANIT ALMOF BRANCO ASTRA",
-    "codigo": 4719
-  },
-  {
     "ean": "7891222039755",
     "nome": "ASSENTO SANIT ALMOF BRANCO ASTRA",
     "codigo": 6278
+  },
+  {
+    "ean": "7891222299388",
+    "nome": "ASSENTO SANIT ALMOF BRANCO ASTRA",
+    "codigo": 4719
   },
   {
     "ean": "7896003816327",
@@ -5206,7 +5216,7 @@
   },
   {
     "ean": "",
-    "nome": "BACIA C/ ABERTURA + CAIXA ACOP. BR LUNA ICASA",
+    "nome": "BACIA + CAIXA ACOP BRANCA MOD. COLONIAL HERVY",
     "codigo": 11065
   },
   {
@@ -5468,6 +5478,11 @@
     "ean": "7898950429049",
     "nome": "BARRA APOIO HIDROLAR 60CM 1060",
     "codigo": 3636
+  },
+  {
+    "ean": "",
+    "nome": "BARRA FERRO VERGALHAO 3/8X12MT",
+    "codigo": 12799
   },
   {
     "ean": "7908027213683",
@@ -7390,7 +7405,7 @@
     "codigo": 8479
   },
   {
-    "ean": "7196",
+    "ean": "7898668360283",
     "nome": "BRACO CHUVEIRO ELETETRICO 1/2 HERC",
     "codigo": 7196
   },
@@ -22365,6 +22380,11 @@
     "codigo": 10827
   },
   {
+    "ean": "17897801302408",
+    "nome": "ESGOTO CURVA 90 CURTA 50 KRONA",
+    "codigo": 12800
+  },
+  {
     "ean": "7897613328248",
     "nome": "ESGOTO CURVA 90 LONGA 100 TIGRE",
     "codigo": 10467
@@ -23643,6 +23663,11 @@
     "ean": "7896587002734",
     "nome": "ESM SINT 3,6L MARROM TABACO EUCALAR*",
     "codigo": 5160
+  },
+  {
+    "ean": "7896587011248",
+    "nome": "ESM SINT 3,6L MARROM TABACO EUCATEX PEG&PINTE",
+    "codigo": 12801
   },
   {
     "ean": "7896587002352",
@@ -27700,6 +27725,11 @@
     "codigo": 12791
   },
   {
+    "ean": "",
+    "nome": "FITA SILVER TAPE 45X05M PRATA 3M",
+    "codigo": 12807
+  },
+  {
     "ean": "7898543389743",
     "nome": "FITA SILVER TAPE 48MMX05MT PRETA TEKBOND****",
     "codigo": 5298
@@ -28820,6 +28850,11 @@
     "codigo": 11486
   },
   {
+    "ean": "7899389000489",
+    "nome": "GARFO C/GAIOLA 909/23",
+    "codigo": 12804
+  },
+  {
     "ean": "7899389000243",
     "nome": "GARFO C/GAIOLA C/ROSCA CONDOR 900/23",
     "codigo": 9108
@@ -28935,7 +28970,7 @@
     "codigo": 12672
   },
   {
-    "ean": "7898713630439",
+    "ean": "7898713633881",
     "nome": "GARRAFAO TERMICO 3L AZUL ANTARES",
     "codigo": 7405
   },
@@ -31105,6 +31140,11 @@
     "codigo": 11879
   },
   {
+    "ean": "",
+    "nome": "KIT 520 TERMINAIS CONECTORES ISOLADOS DE CRIMPAGEM ELÉTRICA VÁRIAS CORES",
+    "codigo": 12823
+  },
+  {
     "ean": "7898217573799",
     "nome": "KIT ACES P/WC BRASIL BR/CRIST. 5PC",
     "codigo": 88
@@ -31123,6 +31163,11 @@
     "ean": "7897727204537",
     "nome": "KIT ACES.P/WC RIMINI CR/CRISTAL 5PC",
     "codigo": 90
+  },
+  {
+    "ean": "7896451875457",
+    "nome": "KIT ACESS BANHEIRO C/5 PCS BR LORENZETTI F24",
+    "codigo": 12011
   },
   {
     "ean": "7896451881595",
@@ -31162,12 +31207,12 @@
   {
     "ean": "7899658318024",
     "nome": "KIT ALIC 3PÇS - UNIV, CORT, BICO HOUSE TOOLS *",
-    "codigo": 6127
+    "codigo": 6131
   },
   {
     "ean": "7899658318024",
     "nome": "KIT ALIC 3PÇS - UNIV, CORT, BICO HOUSE TOOLS *",
-    "codigo": 6131
+    "codigo": 6127
   },
   {
     "ean": "7899981105582",
@@ -31985,6 +32030,11 @@
     "codigo": 5137
   },
   {
+    "ean": "27898094337150",
+    "nome": "LAMP GEL/FOG CLARA 40W 127V BRASF 8715",
+    "codigo": 12826
+  },
+  {
     "ean": "7897079016987",
     "nome": "LAMP GEL/FOG/MIC 15WX127V E14 TASCHIBA",
     "codigo": 4944
@@ -32680,14 +32730,14 @@
     "codigo": 10906
   },
   {
-    "ean": "7800000320459",
-    "nome": "LANTERNA LED CARREGAR CABO USB BOMVINK",
-    "codigo": 10905
-  },
-  {
     "ean": "7908782205268",
     "nome": "LANTERNA LED CARREGAR CABO USB BOMVINK",
     "codigo": 2229
+  },
+  {
+    "ean": "7800000320459",
+    "nome": "LANTERNA LED CARREGAR CABO USB BOMVINK",
+    "codigo": 10905
   },
   {
     "ean": "7899807202686",
@@ -35801,7 +35851,7 @@
   },
   {
     "ean": "",
-    "nome": "MANG PU AZUL 8 X 5MM MT",
+    "nome": "MANG PU CRISTAL 6MM MT",
     "codigo": 12054
   },
   {
@@ -37550,6 +37600,11 @@
     "codigo": 1546
   },
   {
+    "ean": "7898128479869",
+    "nome": "MEC CX ACOP SAIDA CONV CENSI 955Q9",
+    "codigo": 12805
+  },
+  {
     "ean": "7899497806119",
     "nome": "MEC CX ACOP SAIDA DUAL FLUSH REPACAR 611*",
     "codigo": 9735
@@ -37613,6 +37668,11 @@
     "ean": "7897937410094",
     "nome": "METRO SIMPLES NATURAL MOMFORT*",
     "codigo": 9430
+  },
+  {
+    "ean": "",
+    "nome": "MICRO CHAVE DE ALAVANCA CURTA 10A NS0-050D - METALTEX",
+    "codigo": 12822
   },
   {
     "ean": "7899612723741",
@@ -38925,6 +38985,11 @@
     "codigo": 4762
   },
   {
+    "ean": "7898390940364",
+    "nome": "OCULOS SEG PROT PANDA FUME KALIPSO",
+    "codigo": 12812
+  },
+  {
     "ean": "7898390940371",
     "nome": "OCULOS SEG PROT PANDA INCOLOR KALIPSO",
     "codigo": 7529
@@ -39123,6 +39188,11 @@
     "ean": "7898958216153",
     "nome": "ORGANIZADOR FIO 1/2 1,00MT BR DEPLASTI*",
     "codigo": 6578
+  },
+  {
+    "ean": "7896202401010",
+    "nome": "ORGANIZADOR FIO 16MM PT 1MT OVERTIME**",
+    "codigo": 12819
   },
   {
     "ean": "7896202400266",
@@ -40722,12 +40792,12 @@
   {
     "ean": "7893946029173",
     "nome": "PASTA SOLDA 110GR VONDER",
-    "codigo": 367
+    "codigo": 1875
   },
   {
     "ean": "7893946029173",
     "nome": "PASTA SOLDA 110GR VONDER",
-    "codigo": 1875
+    "codigo": 367
   },
   {
     "ean": "7898446730475",
@@ -42936,7 +43006,7 @@
   },
   {
     "ean": "",
-    "nome": "PONTALETE PINUS BRUTO 7CM X 7CM X3MT**",
+    "nome": "PONTALETE EUCALIPTO RED. X3MT",
     "codigo": 3650
   },
   {
@@ -44675,6 +44745,11 @@
     "codigo": 8744
   },
   {
+    "ean": "7898390940487",
+    "nome": "PROTETOR AUDITIVO PLUG SILICONE KALIPSO",
+    "codigo": 12809
+  },
+  {
     "ean": "7891040224968",
     "nome": "PROTETOR AUDITIVO POMP C/CORDAO VERDE 3M*",
     "codigo": 9990
@@ -44683,6 +44758,11 @@
     "ean": "7899863399641",
     "nome": "PROTETOR AUDITIVO PROTEPLUS T. CONCHA",
     "codigo": 355
+  },
+  {
+    "ean": "7898554010049",
+    "nome": "PROTETOR AUDITIVO SAFETY SILICONE C/C 51",
+    "codigo": 12817
   },
   {
     "ean": "742832534796",
@@ -45828,6 +45908,11 @@
     "ean": "7896451876621",
     "nome": "REFIL VELA PURIF ACQUA DUE LORENZETTI",
     "codigo": 5524
+  },
+  {
+    "ean": "7899825509767",
+    "nome": "REFLET LED 200W ALUM 6500K SLIM AVANT",
+    "codigo": 12811
   },
   {
     "ean": "7899932511653",
@@ -47100,7 +47185,7 @@
     "codigo": 1597
   },
   {
-    "ean": "789198071128",
+    "ean": "7891971605164",
     "nome": "REPARO REG PARADO R2 M18 MADRIELLY 1416",
     "codigo": 10761
   },
@@ -47240,7 +47325,7 @@
     "codigo": 7471
   },
   {
-    "ean": "7891980601371",
+    "ean": "7891971601371",
     "nome": "REPARO TOR CHAVETA AM M18 MADRIELLY 1011",
     "codigo": 7002
   },
@@ -47260,7 +47345,7 @@
     "codigo": 3723
   },
   {
-    "ean": "7891980615017",
+    "ean": "7891971615019",
     "nome": "REPARO TORN 1/4 M18 JUNIOR VERMELHO/AZUL MADRIELLY 1443",
     "codigo": 1598
   },
@@ -47275,7 +47360,7 @@
     "codigo": 8759
   },
   {
-    "ean": "7891980615120",
+    "ean": "789197161465",
     "nome": "REPARO TORN 1/4 R22 DOCOL AZUL/VERMELHO MADRIELLY - 1441",
     "codigo": 11186
   },
@@ -47330,7 +47415,7 @@
     "codigo": 6242
   },
   {
-    "ean": "789197161373",
+    "ean": "7891980601372",
     "nome": "REPARO TORN CHAVETA CR M18 MADRIELLY - 1012",
     "codigo": 4955
   },
@@ -49295,6 +49380,11 @@
     "codigo": 2470
   },
   {
+    "ean": "7899389000878",
+    "nome": "ROLO LA CONDOR ANTIRESPIN 09CM",
+    "codigo": 12810
+  },
+  {
     "ean": "7898003895333",
     "nome": "ROLO LA MIX EPOXI 23CM CASTOR 533***",
     "codigo": 8946
@@ -50056,7 +50146,7 @@
   },
   {
     "ean": "",
-    "nome": "SARRAFO PINUS 7CM X 3M",
+    "nome": "SARRAFO PINUS 10CM X 3M",
     "codigo": 3652
   },
   {
@@ -50600,14 +50690,14 @@
     "codigo": 10984
   },
   {
-    "ean": "",
-    "nome": "SERIE R ESGOTO COT90 75 AMANCO",
-    "codigo": 11747
-  },
-  {
     "ean": "10982",
     "nome": "SERIE R ESGOTO COT90 75 AMANCO",
     "codigo": 10982
+  },
+  {
+    "ean": "",
+    "nome": "SERIE R ESGOTO COT90 75 AMANCO",
+    "codigo": 11747
   },
   {
     "ean": "11803",
@@ -51518,6 +51608,11 @@
     "ean": "7897801301596",
     "nome": "SIFAO SANF UNIV BR PVC KRONA/GRAP",
     "codigo": 4818
+  },
+  {
+    "ean": "7891222130094",
+    "nome": "SIFAO SANF UNIV BR SUPER ASTRA",
+    "codigo": 12803
   },
   {
     "ean": "7894061003383",
@@ -52500,6 +52595,11 @@
     "codigo": 9563
   },
   {
+    "ean": "7899881602426",
+    "nome": "SPOT EMB QUAD 9W 6500K LED BEE",
+    "codigo": 12808
+  },
+  {
     "ean": "7898638302664",
     "nome": "SPOT EMB RED 05W LED 3000K BLACK DECKER",
     "codigo": 12028
@@ -53155,6 +53255,26 @@
     "codigo": 4293
   },
   {
+    "ean": "7898907527552",
+    "nome": "SPRAY MUNDIAL GERAL ROSA 400ML",
+    "codigo": 12813
+  },
+  {
+    "ean": "7898567700500",
+    "nome": "SPRAY MUNDIAL GERAL VIOLETA 400ML",
+    "codigo": 12814
+  },
+  {
+    "ean": "7898915993516",
+    "nome": "SPRAY MUNDIAL METALICA DOURADA 400ML",
+    "codigo": 12815
+  },
+  {
+    "ean": "7898915994018",
+    "nome": "SPRAY MUNDIAL METALICA OURO 400ML",
+    "codigo": 12816
+  },
+  {
     "ean": "7898907527354",
     "nome": "SPRAY MUNDIAL PRIME BRANCO BRILHANTE 400ML",
     "codigo": 12078
@@ -53640,14 +53760,14 @@
     "codigo": 10525
   },
   {
-    "ean": "3825",
-    "nome": "SUP CABIDEIRO OBLONGO ZAMAC CR - ALBRAS***",
-    "codigo": 3825
+    "ean": "3826",
+    "nome": "SUP CABIDEIRO GD REDONDO ZAMAC CR CRIATIVA",
+    "codigo": 3826
   },
   {
-    "ean": "3826",
-    "nome": "SUP CABIDEIRO REDONDO ZAMAC CR CRIATIVA",
-    "codigo": 3826
+    "ean": "3825",
+    "nome": "SUP CABIDEIRO PQ OBLONGO ZAMAC CR - ALBRAS***",
+    "codigo": 3825
   },
   {
     "ean": "7899956645785",
@@ -54702,12 +54822,12 @@
   {
     "ean": "7908444000019",
     "nome": "SUP VARAL PAREDE SMART 04 FIOS DIPROLAR *",
-    "codigo": 4334
+    "codigo": 7598
   },
   {
     "ean": "7908444000019",
     "nome": "SUP VARAL PAREDE SMART 04 FIOS DIPROLAR *",
-    "codigo": 7598
+    "codigo": 4334
   },
   {
     "ean": "7908444000422",
@@ -56275,6 +56395,16 @@
     "codigo": 10812
   },
   {
+    "ean": "7891260561867",
+    "nome": "TINTA ACR FOSCO CLASSICA 18LT MEL SILVESTRE N605 SUVINIL",
+    "codigo": 12824
+  },
+  {
+    "ean": "7891260561850",
+    "nome": "TINTA ACR FOSCO CLASSICA 3,2LT AZUL MARINHO R076 SUVINIL",
+    "codigo": 12825
+  },
+  {
     "ean": "5592",
     "nome": "TINTA ACR FOSCO LT 18L BR PREMIUM METALATEX SW*",
     "codigo": 5592
@@ -57383,6 +57513,11 @@
     "ean": "7896587053682",
     "nome": "TINTA EUCAFLEX BORRACHA LIQUIDA AREIA SAARA 20KG",
     "codigo": 12605
+  },
+  {
+    "ean": "7896587014287",
+    "nome": "TINTA GESSO DRYWALL 18L EUCATEX",
+    "codigo": 12806
   },
   {
     "ean": "7898620811181",
@@ -58735,6 +58870,11 @@
     "codigo": 11090
   },
   {
+    "ean": "7908642008824",
+    "nome": "TORN ESFERA MAQ LAVAR 1/2-3/4 FERTAK",
+    "codigo": 12818
+  },
+  {
     "ean": "7894023086126",
     "nome": "TORN ESFERA METAL 1/2 3/4\" BLISTER JAPI**",
     "codigo": 5510
@@ -59165,7 +59305,7 @@
     "codigo": 882
   },
   {
-    "ean": "618231673315",
+    "ean": "7908258401026",
     "nome": "TORN MAQ/TANQ//TANQUINHO C64",
     "codigo": 2714
   },
@@ -60400,7 +60540,7 @@
     "codigo": 12482
   },
   {
-    "ean": "618231663798",
+    "ean": "0618231663798",
     "nome": "TUBO BICA MOVEL COZINHA 3/4 PRETO ESSENCE GOURMET ROADY*",
     "codigo": 8489
   },
@@ -61410,14 +61550,14 @@
     "codigo": 10971
   },
   {
-    "ean": "7890454001646",
-    "nome": "VARAO CORT 19MM 2,0MT MOGNO POLLUX",
-    "codigo": 1572
-  },
-  {
     "ean": "",
     "nome": "VARAO CORT 19MM 2,0MT MOGNO POLLUX",
     "codigo": 1571
+  },
+  {
+    "ean": "7890454001646",
+    "nome": "VARAO CORT 19MM 2,0MT MOGNO POLLUX",
+    "codigo": 1572
   },
   {
     "ean": "7899614300759",
@@ -62898,5 +63038,10 @@
     "ean": "7891696005065",
     "nome": "ZARCAO UNIVERSO FERROLIN 1/4",
     "codigo": 1870
+  },
+  {
+    "ean": "7896587034308",
+    "nome": "Z_EUC PROTEGE ACR FOS PRE BASE A 800ML (BATIDA DE KIWI)",
+    "codigo": 12802
   }
 ]
